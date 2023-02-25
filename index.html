@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X_UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body> 
+    <php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $nombre = $_POST['nombre'];
+  $edad = $_POST['edad'];
+  $sexo = $_POST['sexo'];
+
+  create_user($pdo, $nombre, $edad,$sexo);
+}
+?>
+
+<form method="post">
+  <label>Nombre:</label>
+  <input type="text" name="nombre" required>
+
+  <label>Edad:</label>
+  <input type="number" name="edad" required>
+
+
+  <label>Sexo:</label>
+  <select name="sexo" required>
+    <option value="H">Hombre</option>
+    <option value="M">Mujer</option>
+  </select>
+
+
+  <button type="submit">Crear usuario</button>
+</form>
+
+<php
+$usuarios = read_users($pdo);
+?>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Edad</th>
+    <th>Sexo</th>
+  </tr>
+  <php foreach ($usuarios as $usuario) { ?>
+    <tr>
+      <td><php echo $usuario['id']; ?></td>
+      <td><php echo $usuario['nombre']; ?></td>
+      <td><php echo $usuario['edad']; ?></td>
+      <td><php echo $usuario['sexo']; ?></td>
+    </tr>
+  <php } ?>
+</table>
+
+</body>
