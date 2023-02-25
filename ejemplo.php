@@ -29,7 +29,7 @@ function create_user($pdo, $nombre, $edad,$sexo) {
   function read_users($pdo) {
     $stmt = $pdo->query("SELECT * FROM usuarios");
     $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $usuarios;
+    return $usuarios;s
   }
   
 ?>
